@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #FirstDiv {
+  
+  width: 50%;
+  
+  overflow: auto;
+    height: 500px;
+  margin: auto;
+  margin: 30px;
+  padding: 20px;
+  border: 30px solid black;
+  margin-left: 200px;
+}
+
+#FirstDiv>div{
+  padding: 10px;
+  height: 20px;
+  margin-top: 10px;
+ 
+}
+
+
+        </style>
+    </head>
+    <body>
+        <h1>Infinit Scroll</h1>
+        <div id='FirstDiv'>
+        </div>
+    </body>
+</html>
+<script>
+    var listElm = document.querySelector('#FirstDiv');
+
+
+var q = 1;
+var ScrollEvent = function() {
+  for (var i = 0; i < 20; i++) {
+    var item = document.createElement('div');
+    item.innerText = 'Students Name  ' + q++;
+    item.style.backgroundColor=`rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`;
+    item.style.fontWeight="900"
+    listElm.appendChild(item);
+  }
+}
+
+
+listElm.addEventListener('scroll', function() {
+  if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+     // listElm.style.backgroundColor=`rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`;
+    ScrollEvent();
+  }
+});
+
+
+ScrollEvent();
+</script>
